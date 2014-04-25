@@ -1,0 +1,92 @@
+ls
+ll
+ls
+ls -a
+cd .emacs.d/
+ls
+ls
+cd ..
+ls
+cd ..
+ls
+cd DiDi/
+ls
+cd static/
+ls
+cd widget/
+ls
+cd bootstrap-daterangepicker/
+ls
+pwd
+git status
+rm -rf ../clock/
+git status
+ls
+cd 
+ls
+cd CodeRepo/GitRepo/
+ls
+cd octopress/
+ls
+cd source/
+ls
+mkdir org_post
+ls
+ls
+cd source/
+ls
+cd org_post/
+pwd
+ls
+cd
+cd CodeRepo/
+ls
+cd GitRepo/octopress/
+ls
+rake "使用org-octopress"
+ls
+rvm list
+ruby --version
+rake "new_post[使用org-octopress]"
+ls
+mv source/_posts/2014-04-19-shi-yong-org-octopress.markdown source/org_post/
+ks
+ls
+cd source/
+ls
+cd org_post/
+ls
+mv 2014-04-19-shi-yong-org-octopress.markdown 2014-04-19-shi-yong-org-octopress.org
+ls
+ls
+cd
+ls
+cd .emacs.d/
+ls
+cd elpa/
+ls
+cd ..
+ls
+cd lisp/
+ls
+cd ..
+ls
+cd site-lisp/
+ls
+cd ..
+ls elpa/org-octopress-20140106.1640/
+ls
+mkdir org-sty
+ls
+touch org-sty/setupfile.org
+vim org-sty/setupfile.org 
+ls
+ls
+ls
+mv org-sty/ ~/CodeRepo/GitRepo/octopress/
+ls
+cd ..
+ls
+cd ..
+ls
+ls org-sty/
