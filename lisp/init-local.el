@@ -4,6 +4,10 @@
 ;;; flycheck
 (require 'flycheck)
 
+;;; yasnippet
+(require 'yasnippet)
+(yas-global-mode 1)
+
 ;;; tab width
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
@@ -46,11 +50,11 @@
 
 ;;; org octopress
 (require 'org-octopress)
-(setq org-octopress-directory-top       "~/CodeRepo/GitRepo/octopress/source/org_pos/source")
-(setq org-octopress-directory-posts     "~/CodeRepo/GitRepo/octopress/source/_posts")
-(setq org-octopress-directory-org-top   "~/CodeRepo/GitRepo/octopress/source")
-(setq org-octopress-directory-org-posts "~/CodeRepo/GitRepo/octopress/source/blog")
-(setq org-octopress-setup-file          "~/CodeRepo/GitRepo/octopress/org-sty/setupfile.org")
+(setq org-octopress-directory-top       "~/CodeRepo/GitRepo/Road/blog/source")
+(setq org-octopress-directory-posts     "~/CodeRepo/GitRepo/Road/blog/source/_posts")
+(setq org-octopress-directory-org-top   "~/CodeRepo/GitRepo/Road/blog/source")
+(setq org-octopress-directory-org-posts "~/CodeRepo/GitRepo/Road/blog/org/source")
+(setq org-octopress-setup-file          "~/CodeRepo/GitRepo/Road/blog/org/setupfile.org")
 
 ;;; go mode
 (require 'go-mode-load)
@@ -69,6 +73,7 @@
 (require 'compile)
 (require 'python-pep8)
 (require 'python)
+(require 'flycheck-pyflakes)
 
 (setq
  python-shell-interpreter "ipython"
@@ -83,8 +88,9 @@
  "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
+(setq flycheck-check-syntax-automatically '(mode-enabled save))
 
-(add-hook 'python-mode-hook #'(lambda () (setq flycheck-checker 'python-pylint)))
+; (add-hook 'python-mode-hook #'(lambda () (setq flycheck-checker 'flycheck-pyflakes)))
 
 ;;; remove tailwhitespace
 (add-hook 'before-save-hook (lambda () (whitespace-cleanup)))
@@ -115,22 +121,11 @@
 (require 'ox-rst)
 
 ;;; elixir
-(unless (package-installed-p 'elixir-mode)
-  (package-install 'elixir-mode))
-
-(add-to-list 'auto-mode-alist '("\\.elixir2\\'" . elixir-mode))
-
-(sp-with-modes '(elixir-mode)
-  (sp-local-pair "fn" "end"
-                 :when '(("SPC" "RET"))
-                 :actions '(insert navigate))
-  (sp-local-pair "do" "end"
-                 :when '(("SPC" "RET"))
-                 :post-handlers '(sp-ruby-def-post-handler)
-                          :actions '(insert navigate)))
+(require 'flycheck-elixir)
 
 (unless (package-installed-p 'alchemist)
   (package-install 'alchemist))
+(add-to-list 'package-pinned-packages '(alchemist . "melpa-stable") t)
 
 (setq alchemist-mix-command "/usr/local/bin/mix")
 (setq alchemist-execute-command "/usr/local/bin/elixir")
@@ -143,5 +138,8 @@
 (require 'multi-term)
 (setq multi-term-program "/bin/zsh")
 (setq system-uses-terminfo nil)
+
+;;; company mode
+; (add-hook 'after-init-hook 'global-company-mode)
 
 (provide 'init-local)
